@@ -12,6 +12,7 @@ langchain-openai = "^0.1.22"
 python-dotenv = "^1.0.1"
 streamlit = "^1.37.1"
 langchain-community = "^0.2.12"
+langchain-groq = "^0.1.9"
 
 
 [tool.poetry.group.dev.dependencies]
