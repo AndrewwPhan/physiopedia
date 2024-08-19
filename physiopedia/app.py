@@ -52,8 +52,8 @@ def get_sql_chain(db):
 
     prompt = ChatPromptTemplate.from_template(template)
 
-    #llm = ChatOpenAI(model="gpt-4o-mini")
-    llm = ChatGroq(model="mixtral-8x7b-32768", temperature=0)
+    llm = ChatOpenAI(model="gpt-4o-mini")
+    #llm = ChatGroq(model="mixtral-8x7b-32768", temperature=0)
 
     # Pass the schema dynamically from the database
     def get_schema(_):
@@ -83,8 +83,8 @@ def get_response(user_query: str, db: SQLDatabase, chat_history: list):
 
     prompt = ChatPromptTemplate.from_template(template)
 
-    #llm = ChatOpenAI(model="gpt-4o-mini")
-    llm = ChatGroq(model="mixtral-8x7b-32768", temperature=0)
+    llm = ChatOpenAI(model="gpt-4o-mini")
+    #llm = ChatGroq(model="mixtral-8x7b-32768", temperature=0)
 
     chain = (
         RunnablePassthrough.assign(query=sql_chain).assign(
@@ -101,10 +101,10 @@ def get_response(user_query: str, db: SQLDatabase, chat_history: list):
         "chat_history": chat_history,
     })
 
-# Initialize chat history in session state
+# Initialise chat history in session state
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = [
-        AIMessage(content="Hello! I'm a SQL assistant. Ask me anything about your database."),
+        AIMessage(content="Hello! I'm your physio assistant. Ask me anything about exercises or muscle groups."),
     ]
 
 # Main function to run the app
@@ -117,7 +117,7 @@ def main():
 
     with st.sidebar:
         st.subheader("Settings")
-        st.write("This is a simple chat application using PhysioPedia. Connect to the database and start chatting.")
+        st.write("This is a simple chat application to help you with your physio exercises. Connect to the CSV and database to start chatting.")
 
         st.text_input("Host", value="localhost", key="Host")
         st.text_input("Port", value="3306", key="Port")
@@ -127,9 +127,9 @@ def main():
 
         # Button to load the CSV data into the SQLite database
         if st.button("Load CSV to DB"):
-            csv_file_path = './megaGymDataset.csv'  # Ensure this is the correct path to your CSV
+            csv_file_path = './megaGymDataset.csv'  
             db_file_path = './gym.db'  # SQLite database file
-            table_name = 'megaGymDataset'  # Desired table name
+            table_name = 'megaGymDataset'  
 
             # Load CSV into the SQLite database
             load_csv_to_sqlite(csv_file_path, db_file_path, table_name)
