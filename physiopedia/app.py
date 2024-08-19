@@ -5,6 +5,7 @@ from langchain_core.runnables import RunnablePassthrough
 from langchain_community.utilities import SQLDatabase
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
 import streamlit as st
 import os
 import pandas as pd
@@ -51,7 +52,8 @@ def get_sql_chain(db):
 
     prompt = ChatPromptTemplate.from_template(template)
 
-    llm = ChatOpenAI(model="gpt-4o-mini")
+    #llm = ChatOpenAI(model="gpt-4o-mini")
+    llm = ChatGroq(model="mixtral-8x7b-32768", temperature=0)
 
     # Pass the schema dynamically from the database
     def get_schema(_):
@@ -81,7 +83,8 @@ def get_response(user_query: str, db: SQLDatabase, chat_history: list):
 
     prompt = ChatPromptTemplate.from_template(template)
 
-    llm = ChatOpenAI(model="gpt-4o-mini")
+    #llm = ChatOpenAI(model="gpt-4o-mini")
+    llm = ChatGroq(model="mixtral-8x7b-32768", temperature=0)
 
     chain = (
         RunnablePassthrough.assign(query=sql_chain).assign(
