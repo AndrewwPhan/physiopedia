@@ -1,4 +1,4 @@
-# Chat with PhysioPedia
+# Chat with PhysioPedia 💪📚
 
 Chat with PhysioPedia is a simple chat-based application designed to assist users with their physiotherapy exercises. This app allows users to ask questions related to exercises and muscle groups while integrating data stored in a SQLite database.
 
@@ -8,6 +8,11 @@ Chat with PhysioPedia is a simple chat-based application designed to assist user
 - **Database Integration**: The app allows you to load exercise data from a CSV file and insert it into an SQLite database.
 - **SQL Query Generation**: Automatically generates SQL queries based on user questions to fetch relevant data from the database.
 - **Natural Language Responses**: The app uses AI to generate human-readable responses from the SQL query results.
+
+## Screenshots
+
+### Chat Interface
+![Chat Interface Screenshot](./PhysioPedia.png)
 
 ## Technology Stack
 
@@ -44,7 +49,6 @@ Chat with PhysioPedia is a simple chat-based application designed to assist user
 
 5. **Run the App**:
     Start the Streamlit application by running:
+
      ```bash
      streamlit run app.py
-
-     
